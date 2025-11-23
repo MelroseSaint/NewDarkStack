@@ -126,8 +126,8 @@ const GlowingButton: React.FC<GlowingButtonProps> = ({ children, href, primary =
     <a
         href={href}
         className={`group relative px-8 py-4 font-bold font-mono overflow-hidden text-center text-sm transition-all duration-300 ${primary
-                ? 'bg-neon-magenta text-black shadow-[0_0_15px_rgba(255,0,128,0.4)] hover:shadow-[0_0_30px_rgba(255,0,128,0.8)]'
-                : 'border border-white/20 text-white hover:border-neon-cyan hover:shadow-[0_0_15px_rgba(0,255,204,0.3)]'
+            ? 'bg-neon-magenta text-black shadow-[0_0_15px_rgba(255,0,128,0.4)] hover:shadow-[0_0_30px_rgba(255,0,128,0.8)]'
+            : 'border border-white/20 text-white hover:border-neon-cyan hover:shadow-[0_0_15px_rgba(0,255,204,0.3)]'
             } rounded-sm`}
     >
         <span className="relative z-10 flex items-center justify-center gap-2">{children}</span>
@@ -218,7 +218,7 @@ const Hero = () => {
                 <div className="flex-1 relative">
                     <div className="relative w-full h-[420px] bg-[#151515] border border-white/10 rounded-2xl overflow-hidden shadow-[0_0_25px_rgba(139,92,246,0.3)]">
                         {!imageError ? (
-                            <img src="/hero-image.jpg" alt="Hero" className="absolute inset-0 w-full h-full object-cover" onError={() => setImageError(true)} />
+                            <img src="/hero-image.png?v=2" alt="Hero" className="absolute inset-0 w-full h-full object-cover" onError={() => setImageError(true)} />
                         ) : (
                             <div className="w-full h-full flex items-center justify-center text-gray-500 text-sm">Image not found: place file at /public/hero-image.jpg</div>
                         )}
