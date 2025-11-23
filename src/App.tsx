@@ -49,8 +49,7 @@ const AnimatedBackground = () => {
         const container = containerRef.current;
         if (!container) return;
 
-        const isMobile = window.innerWidth < 768;
-        const particleCount = isMobile ? 30 : 75;
+        const particleCount = 75;
         const particles: HTMLDivElement[] = [];
         for (let i = 0; i < particleCount; i++) {
             const p = document.createElement('div');
