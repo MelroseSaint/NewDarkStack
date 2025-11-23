@@ -200,6 +200,7 @@ const Navbar = () => {
 
 /**
  * COMPONENT: HERO SECTION
+ * Displays the main hero image and introduction
  */
 const Hero = () => {
     return (
