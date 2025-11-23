@@ -49,8 +49,7 @@ const AnimatedBackground = () => {
         const container = containerRef.current;
         if (!container) return;
 
-        const isMobile = window.innerWidth < 768;
-        const particleCount = isMobile ? 30 : 75;
+        const particleCount = 75;
         const particles: HTMLDivElement[] = [];
         for (let i = 0; i < particleCount; i++) {
             const p = document.createElement('div');
@@ -188,11 +187,11 @@ const Navbar = () => {
                 <button className="md:hidden text-white p-2" onClick={() => setIsOpen(!isOpen)}>{isOpen ? <X /> : <Menu />}</button>
             </div>
             {isOpen && (
-                <div className="md:hidden fixed inset-0 top-20 bg-black/95 backdrop-blur-xl border-t border-white/10 px-6 py-8 animate-in slide-in-from-top-5 duration-300 flex flex-col gap-4 h-[calc(100vh-5rem)]">
+                <div className="md:hidden bg-black/95 backdrop-blur-xl border-b border-white/10 px-6 py-4 absolute w-full animate-in slide-in-from-top-5 duration-300">
                     {navLinks.map(link => (
-                        <a key={link.name} href={link.href} onClick={() => setIsOpen(false)} className="block py-3 font-mono text-xl text-gray-300 border-l-2 border-transparent hover:border-neon-magenta hover:pl-4 hover:text-white transition-all">{link.name}</a>
+                        <a key={link.name} href={link.href} onClick={() => setIsOpen(false)} className="block py-4 font-mono text-gray-300 border-l-2 border-transparent hover:border-neon-magenta hover:pl-4 transition-all">{link.name}</a>
                     ))}
-                    <a href="#contact" onClick={() => setIsOpen(false)} className="block py-3 font-mono text-xl text-neon-blue border-l-2 border-transparent hover:border-neon-blue hover:pl-4 transition-all mt-4">@SaintLabs Contact</a>
+                    <a href="#contact" onClick={() => setIsOpen(false)} className="block py-4 font-mono text-neon-blue border-t border-white/5 mt-2">@SaintLabs Contact</a>
                 </div>
             )}
         </nav>
