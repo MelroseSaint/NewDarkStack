@@ -18,6 +18,7 @@ import {
     Server,
     Fingerprint
 } from 'lucide-react';
+import heroImage from './assets/hero-image.png';
 
 // Types
 interface AnimatedElementProps {
@@ -201,7 +202,6 @@ const Navbar = () => {
  * COMPONENT: HERO SECTION
  */
 const Hero = () => {
-    const [imageError, setImageError] = useState(false);
     return (
         <section className="relative w-full min-h-screen flex items-center justify-center px-6 py-24 overflow-hidden">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.07)_0%,rgba(0,0,0,1)_70%] pointer-events-none"></div>
@@ -217,11 +217,7 @@ const Hero = () => {
                 </div>
                 <div className="flex-1 relative">
                     <div className="relative w-full h-[420px] bg-[#151515] border border-white/10 rounded-2xl overflow-hidden shadow-[0_0_25px_rgba(139,92,246,0.3)]">
-                        {!imageError ? (
-                            <img src="/hero-image.png?v=2" alt="Hero" className="absolute inset-0 w-full h-full object-cover" onError={() => setImageError(true)} />
-                        ) : (
-                            <div className="w-full h-full flex items-center justify-center text-gray-500 text-sm">Image not found: place file at /public/hero-image.jpg</div>
-                        )}
+                        <img src={heroImage} alt="Hero" className="absolute inset-0 w-full h-full object-cover" />
                         <div className="absolute inset-0 pointer-events-none">
                             <div className="absolute top-10 left-10 text-5xl text-neon-cyan opacity-40 font-mono animate-pulse translate-x-3 translate-y-3">{'{}'}</div>
                             <div className="absolute bottom-10 right-10 text-3xl text-neon-magenta opacity-40 font-mono animate-pulse -translate-x-3 -translate-y-3">{'//'}</div>
