@@ -310,7 +310,7 @@ const Hero = () => {
                             {/* Image Wrapper */}
                             <div className="w-full h-full overflow-hidden bg-[#151515] border border-white/10 rounded-lg">
                                 <img
-                                    src="image.png"
+                                    src="/image.png"
                                     alt="Founder of DarkStackStudios"
                                     // Using object-cover for the portrait image
                                     className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500"
