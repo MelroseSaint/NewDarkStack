@@ -1,15 +1,15 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { 
-  Code, 
-  Terminal, 
-  Cpu, 
-  Zap, 
-  Layers, 
-  Monitor, 
-  Github, 
-  Twitter, 
-  Mail, 
-  ArrowRight, 
+import {
+  Code,
+  Terminal,
+  Cpu,
+  Zap,
+  Layers,
+  Monitor,
+  Github,
+  Twitter,
+  Mail,
+  ArrowRight,
   ExternalLink,
   Menu,
   X,
@@ -55,11 +55,11 @@ const AnimatedBackground = () => {
     for (let i = 0; i < particleCount; i++) {
       const p = document.createElement('div');
       p.className = 'absolute rounded-full pointer-events-none opacity-0 transition-opacity duration-1000';
-      
+
       // Randomize position
       p.style.left = `${Math.random() * 100}vw`;
       p.style.top = `${Math.random() * 100}vh`;
-      
+
       // Randomize size and color
       const size = Math.random() * 2 + 1; // 1px to 3px
       p.style.width = `${size}px`;
@@ -67,13 +67,13 @@ const AnimatedBackground = () => {
       const colorIndex = Math.floor(Math.random() * 3);
       const colors = ['var(--neon-cyan)', 'var(--neon-magenta)', 'var(--neon-blue)'];
       p.style.backgroundColor = colors[colorIndex];
-      
+
       // Custom animation delay and duration for flowing/glitch effect
       p.style.animation = `flow ${Math.random() * 10 + 10}s linear infinite, glitch-fade ${Math.random() * 5}s linear infinite`;
       p.style.animationDelay = `${Math.random() * 10}s`;
-      
+
       // Initial fade in
-      setTimeout(() => p.style.opacity = '0.4', 100); 
+      setTimeout(() => p.style.opacity = '0.4', 100);
 
       container.appendChild(p);
       particles.push(p);
@@ -94,18 +94,18 @@ const AnimatedBackground = () => {
       }
     `;
     document.head.appendChild(styleSheet);
-    
+
     return () => {
       // Cleanup
       if (container) container.innerHTML = '';
       if (document.head.contains(styleSheet)) {
-          document.head.removeChild(styleSheet);
+        document.head.removeChild(styleSheet);
       }
     };
   }, []);
 
   return (
-    <div 
+    <div
       ref={containerRef}
       className="fixed top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0 bg-black"
       style={{
@@ -165,11 +165,11 @@ const AnimatedElement: React.FC<AnimatedElementProps> = ({ children, delay = 0, 
  * COMPONENT: GLOWING BUTTON
  */
 const GlowingButton: React.FC<GlowingButtonProps> = ({ children, href, primary = true }) => (
-  <a 
+  <a
     href={href}
     className={`group relative px-8 py-4 font-bold font-mono overflow-hidden text-center text-sm transition-all duration-300
-      ${primary 
-        ? 'bg-neon-magenta text-black shadow-[0_0_15px_rgba(255,0,128,0.4)] hover:shadow-[0_0_30px_rgba(255,0,128,0.8)]' 
+      ${primary
+        ? 'bg-neon-magenta text-black shadow-[0_0_15px_rgba(255,0,128,0.4)] hover:shadow-[0_0_30px_rgba(255,0,128,0.8)]'
         : 'border border-white/20 text-white hover:border-neon-cyan hover:shadow-[0_0_15px_rgba(0,255,204,0.3)]'
       } rounded-sm`}
   >
@@ -233,8 +233,8 @@ const Navbar = () => {
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center space-x-8">
           {navLinks.map((link) => (
-            <a 
-              key={link.name} 
+            <a
+              key={link.name}
               href={link.href}
               className="font-mono text-sm text-gray-400 hover:text-neon-cyan transition-colors"
             >
@@ -242,7 +242,7 @@ const Navbar = () => {
             </a>
           ))}
         </div>
-        
+
         <div className="hidden md:block">
           <a href="#contact" className="px-4 py-2 border border-neon-blue text-neon-blue font-mono text-xs hover:bg-neon-blue hover:text-black transition-all rounded-sm">
             @SaintLabs
@@ -259,7 +259,7 @@ const Navbar = () => {
       {isOpen && (
         <div className="md:hidden bg-black border-b border-white/10 px-6 py-4 absolute w-full">
           {navLinks.map((link) => (
-            <a 
+            <a
               key={link.name}
               href={link.href}
               onClick={() => setIsOpen(false)}
@@ -284,91 +284,57 @@ const Hero = () => {
   const [imageError, setImageError] = useState(false);
 
   return (
-    <section className="relative min-h-screen flex items-center pt-32 lg:pt-20 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
-        
-        <div className="order-2 lg:order-1 space-y-8">
-          <AnimatedElement delay={100}>
-            <div className="inline-block px-3 py-1 border border-neon-cyan/30 rounded bg-neon-cyan/5 backdrop-blur-sm">
-              <span className="font-mono text-xs text-neon-cyan animate-pulse">
-                // FOUNDER: ObscuraCode
-                <span className={`inline-block w-2 h-4 ml-1 bg-neon-magenta animate-blink`}></span>
-              </span>
-            </div>
-          </AnimatedElement>
-          
-          <AnimatedElement delay={300}>
-            <h1 className="text-5xl md:text-7xl font-bold text-white tracking-tight leading-tight">
-              <span className="block text-gray-200">DarkStackStudios</span>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-magenta to-neon-blue">
-                Digital Futures
-              </span>
-            </h1>
-          </AnimatedElement>
-          
-          <AnimatedElement delay={500}>
-            <p className="text-xl text-gray-400 max-w-lg leading-relaxed border-l-4 border-neon-blue pl-6">
-              A hyper-evolved AI development studio led by <span className="text-neon-magenta font-semibold">ObscuraCode</span>. 
-              Fully overhauled. Fully animated. Fully engineered for the future.
-            </p>
-          </AnimatedElement>
-          
-          <AnimatedElement delay={700} className="flex flex-col sm:flex-row gap-4 pt-4">
-            <GlowingButton href="#projects" primary={true}>
-              EXPLORE THE STACK
-              <ArrowRight className="w-4 h-4" />
-            </GlowingButton>
-            <GlowingButton href="#contact" primary={false}>
-              Collaborate / Contact Me
-            </GlowingButton>
-          </AnimatedElement>
+    <section className="relative w-full min-h-screen flex items-center justify-center px-6 py-24 overflow-hidden">
+
+      {/* Background grid */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.07)_0%,rgba(0,0,0,1)_70%)] pointer-events-none"></div>
+
+      {/* Floating neon dots */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-12 left-16 w-2 h-2 bg-purple-500 rounded-full animate-ping opacity-70"></div>
+        <div className="absolute bottom-20 right-20 w-3 h-3 bg-blue-500 rounded-full animate-pulse opacity-70"></div>
+      </div>
+
+      {/* Main content */}
+      <div className="relative z-20 flex flex-col md:flex-row items-center gap-16 max-w-6xl mx-auto">
+
+        {/* TEXT */}
+        <div className="flex-1 text-center md:text-left">
+          <h1 className="text-5xl md:text-6xl font-extrabold text-white leading-tight drop-shadow-[0_0_20px_rgba(139,92,246,0.6)]">
+            DarkStackStudios
+          </h1>
+          <p className="text-lg text-gray-300 mt-4 max-w-md">
+            A hyper-evolved AI development studio led by <span className="text-purple-400 font-semibold">ObscuraCode</span>.
+          </p>
+          <button className="mt-6 px-8 py-3 bg-purple-600 hover:bg-purple-700 transition rounded-xl shadow-[0_0_15px_rgba(139,92,246,0.7)]">
+            Explore the Stack
+          </button>
         </div>
 
-        <AnimatedElement delay={500} className="order-1 lg:order-2 relative flex justify-center lg:justify-end">
-          {/* SaintLabs / ObscuraCode Avatar Container */}
-          <div className="relative w-72 h-72 md:w-96 md:h-96 group perspective-1000">
-            {/* Animated 3D Card Effect */}
-            <div className="relative w-full h-full transform transition-transform duration-1000 group-hover:rotate-y-6 group-hover:rotate-x-3 group-hover:shadow-[0_0_50px_rgba(30,144,255,0.4)]">
-              
-              {/* Image Wrapper Container */}
-              <div className="w-full h-full bg-[#151515] border border-white/10 rounded-2xl p-3 relative shadow-[0_0_25px_rgba(255,0,128,0.2)] flex items-center justify-center">
-                
-                {/* Image Content */}
-                <div className="relative w-full h-full overflow-hidden rounded-xl bg-black">
-                  {!imageError ? (
-                    <img 
-                      src="/hero-image.jpg"
-                      alt="DarkStack Avatar" 
-                      className="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-opacity duration-500"
-                      onError={() => setImageError(true)}
-                    />
-                  ) : (
-                     <div className="flex flex-col items-center justify-center h-full z-10 text-center p-4 space-y-2 bg-[#111]">
-                        <div className="text-neon-magenta font-mono text-xs tracking-widest">IMAGE_NOT_FOUND</div>
-                        <div className="text-gray-600 font-mono text-[10px]">/public/hero-image.jpg</div>
-                     </div>
-                  )}
+        {/* IMAGE */}
+        <div className="flex-1 relative">
+          <div className="relative w-full h-[420px] bg-[#151515] border border-white/10 rounded-2xl overflow-hidden shadow-[0_0_25px_rgba(139,92,246,0.3)]">
 
-                  {/* Floating Code Symbols (Overlay) */}
-                  <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-20">
-                    <div className="absolute text-5xl text-neon-cyan opacity-40 top-6 left-6 animate-pulse-slow font-mono transform translate-x-3 translate-y-3">{'{}'}</div>
-                    <div className="absolute text-3xl text-neon-magenta opacity-40 bottom-6 right-6 animate-pulse-slow font-mono transform -translate-x-3 -translate-y-3">{'//'}</div>
-                  </div>
-                </div>
-
-                {/* Neon Corner Accents */}
-                <div className="absolute -top-1 -left-1 w-6 h-6 border-t-2 border-l-2 border-neon-magenta rounded-tl-lg"></div>
-                <div className="absolute -bottom-1 -right-1 w-6 h-6 border-b-2 border-r-2 border-neon-cyan rounded-br-lg"></div>
-
+            {/* Image */}
+            {!imageError ? (
+              <img
+                src="/hero-image.jpg"
+                alt="Hero"
+                className="absolute inset-0 w-full h-full object-cover"
+                onError={() => setImageError(true)}
+              />
+            ) : (
+              <div className="w-full h-full flex items-center justify-center text-gray-500 text-sm">
+                Image failed to load
               </div>
-            </div>
-            
-            {/* SaintLabs Tag */}
-            <div className="absolute -bottom-6 -left-6 px-4 py-2 bg-neon-blue text-black font-mono font-bold text-xs rounded-sm shadow-[0_0_15px_rgba(30,144,255,0.5)]">
-              @SAINTLABS
-            </div>
+            )}
+
+            {/* Neon accent corners */}
+            <div className="absolute -top-1 -left-1 w-5 h-5 border-t-2 border-l-2 border-purple-500 rounded-tl-lg"></div>
+            <div className="absolute -bottom-1 -right-1 w-5 h-5 border-b-2 border-r-2 border-purple-500 rounded-br-lg"></div>
+
           </div>
-        </AnimatedElement>
+        </div>
       </div>
     </section>
   );
@@ -387,12 +353,12 @@ const About = () => {
   return (
     <section id="about" className="py-24 relative z-10 bg-[#0A0A0A] border-t border-b border-neon-blue/10">
       <div className="max-w-7xl mx-auto px-6">
-        <SectionHeader 
-          title="The Founder — ObscuraCode" 
+        <SectionHeader
+          title="The Founder — ObscuraCode"
           subtitle="Precision, Elegance, and Intentional Engineering."
           id="about"
         />
-        
+
         <div className="grid lg:grid-cols-3 gap-12">
           <AnimatedElement delay={300} className="lg:col-span-1 space-y-6 text-gray-300 leading-relaxed font-light">
             <p className="border-l-4 border-neon-magenta pl-4 italic">
@@ -409,7 +375,7 @@ const About = () => {
           <div className="lg:col-span-2 grid md:grid-cols-3 gap-6">
             {skills.map((skill, index) => (
               <AnimatedElement key={index} delay={300 + index * 200}>
-                <div 
+                <div
                   className="group p-6 bg-[#181818] border border-white/5 shadow-xl hover:border-neon-cyan transition-all duration-300 transform hover:scale-[1.03] rounded-lg"
                 >
                   <div className="flex items-center gap-3 mb-4">
@@ -442,9 +408,9 @@ const Services = () => {
     <section id="services" className="py-24 relative z-10">
       <div className="max-w-7xl mx-auto px-6">
         <SectionHeader title="My Code, My Canvas" subtitle="A structured approach to delivering intentional software." id="services" />
-        
+
         <div className="relative flex flex-col md:grid md:grid-cols-4 gap-12 text-center mt-16">
-          
+
           {/* Network Lines (CSS based for simplicity) */}
           <div className="absolute hidden md:block inset-0 pointer-events-none">
             {/* Center Node: DarkStackStudios */}
@@ -460,7 +426,7 @@ const Services = () => {
 
           {services.map((service, index) => (
             <AnimatedElement key={index} delay={300 + index * 150}>
-              <div 
+              <div
                 className={`group relative p-6 bg-[#141414] border border-white/5 transition-all duration-500 hover:shadow-[0_0_25px_rgba(30,144,255,0.5)] transform hover:-translate-y-2 rounded-lg`}
               >
                 <div className={`p-4 mx-auto w-fit border border-white/10 ${service.color} mb-6 transition-colors rounded-sm`}>
@@ -517,11 +483,11 @@ const Projects = () => {
     <section id="projects" className="py-24 bg-[#0A0A0A] relative z-10 border-t border-neon-magenta/10">
       <div className="max-w-7xl mx-auto px-6">
         <SectionHeader title="Projects Born in Code" subtitle="Showcasing the intersection of creativity and logic." id="projects" />
-        
+
         <div className="grid md:grid-cols-2 gap-8">
           {projects.map((project, index) => (
             <AnimatedElement key={index} delay={300 + index * 150}>
-              <a 
+              <a
                 href={project.link}
                 className="block group relative overflow-hidden rounded-lg border border-white/5 bg-[#121212] hover:bg-[#181818] transition-all duration-500"
               >
@@ -561,14 +527,14 @@ const Contact = () => {
     <section id="contact" className="py-24 relative z-10 bg-[#050505]">
       <div className="max-w-4xl mx-auto px-6 text-center">
         <SectionHeader title="Initialise Connection" id="contact" />
-        
+
         <AnimatedElement delay={300}>
           <p className="text-xl text-gray-300 mb-12 max-w-2xl mx-auto">
             Ready to bring a vision to life? Whether it's a complex AI integration or a sleek web experience, I'm ready to deploy.
           </p>
-          
+
           <div className="bg-[#111] p-8 md:p-12 rounded-xl border border-white/5 shadow-2xl relative overflow-hidden group">
-             {/* Background Grid Effect */}
+            {/* Background Grid Effect */}
             <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:40px_40px] opacity-20 pointer-events-none"></div>
 
             <div className="relative z-10 flex flex-col md:flex-row justify-center items-center gap-6 md:gap-12">
@@ -578,7 +544,7 @@ const Contact = () => {
                 </div>
                 <span>contact@darkstackstudios.com</span>
               </a>
-              
+
               <a href="#" className="flex items-center gap-3 text-gray-300 hover:text-neon-magenta transition-colors font-mono">
                 <div className="p-3 bg-white/5 rounded-full">
                   <Github className="w-6 h-6" />
@@ -595,9 +561,9 @@ const Contact = () => {
             </div>
 
             <div className="mt-12">
-               <GlowingButton href="mailto:contact@darkstackstudios.com" primary={true}>
-                 SEND TRANSMISSION
-               </GlowingButton>
+              <GlowingButton href="mailto:contact@darkstackstudios.com" primary={true}>
+                SEND TRANSMISSION
+              </GlowingButton>
             </div>
           </div>
         </AnimatedElement>
@@ -644,10 +610,10 @@ function App() {
         .animate-blink { animation: blink 1s step-end infinite; }
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
       `}</style>
-      
+
       <AnimatedBackground />
       <Navbar />
-      
+
       <main>
         <Hero />
         <About />
@@ -655,7 +621,7 @@ function App() {
         <Projects />
         <Contact />
       </main>
-      
+
       <Footer />
     </div>
   );
