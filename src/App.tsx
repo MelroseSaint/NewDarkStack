@@ -215,6 +215,15 @@ const Hero = () => {
                     <h1 className="text-5xl md:text-6xl font-extrabold text-white leading-tight drop-shadow-[0_0_20px_rgba(139,92,246,0.6)]">DarkStackStudios</h1>
                     <p className="text-lg text-gray-300 mt-4 max-w-md">A hyper-evolved AI development studio led by <span className="text-purple-400 font-semibold">ObscuraCode</span>.</p>
                     <button className="mt-6 px-8 py-3 bg-purple-600 hover:bg-purple-700 transition rounded-xl shadow-[0_0_15px_rgba(139,92,246,0.7)]">Explore the Stack</button>
+
+                    {/* Tech Stack */}
+                    <div className="mt-10 flex flex-wrap gap-3 opacity-80">
+                        {['Trae AI', 'Google Canvas', 'Google Antigravity', 'AI Studio'].map((tech) => (
+                            <span key={tech} className="px-3 py-1 text-xs font-mono text-purple-300 bg-purple-900/30 border border-purple-500/30 rounded-full">
+                                {tech}
+                            </span>
+                        ))}
+                    </div>
                 </div>
                 <div className="flex-1 relative">
                     <div className="relative w-full h-[420px] bg-[#151515] border border-white/10 rounded-2xl overflow-hidden shadow-[0_0_25px_rgba(139,92,246,0.3)]">
