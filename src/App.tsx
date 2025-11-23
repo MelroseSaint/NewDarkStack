@@ -171,7 +171,7 @@ const Navbar = () => {
     ];
     return (
         <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-black/95 backdrop-blur-md border-b border-white/10' : 'bg-transparent'}`}>
-            <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <div className="max-w-7xl mx-auto px-4 md:px-6 h-20 flex items-center justify-between">
                 <a href="#" className="flex items-center space-x-2 group">
                     <Code className="text-neon-magenta w-6 h-6 group-hover:rotate-6 transition-transform" />
                     <span className="text-xl font-mono font-bold tracking-tighter text-white">DarkStack<span className="text-neon-cyan">Studios</span></span>
@@ -184,14 +184,14 @@ const Navbar = () => {
                 <div className="hidden md:block">
                     <a href="#contact" className="px-4 py-2 border border-neon-blue text-neon-blue font-mono text-xs hover:bg-neon-blue hover:text-black transition-all rounded-sm">@SaintLabs</a>
                 </div>
-                <button className="md:hidden text-white" onClick={() => setIsOpen(!isOpen)}>{isOpen ? <X /> : <Menu />}</button>
+                <button className="md:hidden text-white p-2" onClick={() => setIsOpen(!isOpen)}>{isOpen ? <X /> : <Menu />}</button>
             </div>
             {isOpen && (
-                <div className="md:hidden bg-black border-b border-white/10 px-6 py-4 absolute w-full">
+                <div className="md:hidden bg-black/95 backdrop-blur-xl border-b border-white/10 px-6 py-4 absolute w-full animate-in slide-in-from-top-5 duration-300">
                     {navLinks.map(link => (
-                        <a key={link.name} href={link.href} onClick={() => setIsOpen(false)} className="block py-3 font-mono text-gray-300 border-l-2 border-transparent hover:border-neon-magenta hover:pl-4 transition-all">{link.name}</a>
+                        <a key={link.name} href={link.href} onClick={() => setIsOpen(false)} className="block py-4 font-mono text-gray-300 border-l-2 border-transparent hover:border-neon-magenta hover:pl-4 transition-all">{link.name}</a>
                     ))}
-                    <a href="#contact" className="block py-3 font-mono text-neon-blue">@SaintLabs Contact</a>
+                    <a href="#contact" onClick={() => setIsOpen(false)} className="block py-4 font-mono text-neon-blue border-t border-white/5 mt-2">@SaintLabs Contact</a>
                 </div>
             )}
         </nav>
@@ -204,33 +204,33 @@ const Navbar = () => {
  */
 const Hero = () => {
     return (
-        <section className="relative w-full min-h-screen flex items-center justify-center px-6 py-24 overflow-hidden">
+        <section className="relative w-full min-h-screen flex items-center justify-center px-4 md:px-6 py-20 md:py-24 overflow-hidden">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.07)_0%,rgba(0,0,0,1)_70%] pointer-events-none"></div>
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
                 <div className="absolute top-12 left-16 w-2 h-2 bg-purple-500 rounded-full animate-ping opacity-70"></div>
                 <div className="absolute bottom-20 right-20 w-3 h-3 bg-blue-500 rounded-full animate-pulse opacity-70"></div>
             </div>
-            <div className="relative z-20 flex flex-col md:flex-row items-center gap-16 max-w-6xl mx-auto">
+            <div className="relative z-20 flex flex-col md:flex-row items-center gap-10 md:gap-16 max-w-6xl mx-auto">
                 <div className="flex-1 text-center md:text-left">
-                    <h1 className="text-5xl md:text-6xl font-extrabold text-white leading-tight drop-shadow-[0_0_20px_rgba(139,92,246,0.6)]">DarkStackStudios</h1>
-                    <p className="text-lg text-gray-300 mt-4 max-w-md">A hyper-evolved AI development studio led by <span className="text-purple-400 font-semibold">ObscuraCode</span>.</p>
-                    <button className="mt-6 px-8 py-3 bg-purple-600 hover:bg-purple-700 transition rounded-xl shadow-[0_0_15px_rgba(139,92,246,0.7)]">Explore the Stack</button>
+                    <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white leading-tight drop-shadow-[0_0_20px_rgba(139,92,246,0.6)]">DarkStackStudios</h1>
+                    <p className="text-base sm:text-lg text-gray-300 mt-4 max-w-md mx-auto md:mx-0">A hyper-evolved AI development studio led by <span className="text-purple-400 font-semibold">ObscuraCode</span>.</p>
+                    <button className="mt-6 px-8 py-3 bg-purple-600 hover:bg-purple-700 transition rounded-xl shadow-[0_0_15px_rgba(139,92,246,0.7)] w-full md:w-auto">Explore the Stack</button>
 
                     {/* Tech Stack */}
-                    <div className="mt-10 flex flex-wrap gap-3 opacity-80">
+                    <div className="mt-8 md:mt-10 flex flex-wrap justify-center md:justify-start gap-2 md:gap-3 opacity-80">
                         {['Trae AI', 'Google Canvas', 'Google Antigravity', 'AI Studio'].map((tech) => (
-                            <span key={tech} className="px-3 py-1 text-xs font-mono text-purple-300 bg-purple-900/30 border border-purple-500/30 rounded-full">
+                            <span key={tech} className="px-3 py-1 text-[10px] md:text-xs font-mono text-purple-300 bg-purple-900/30 border border-purple-500/30 rounded-full whitespace-nowrap">
                                 {tech}
                             </span>
                         ))}
                     </div>
                 </div>
-                <div className="flex-1 relative">
-                    <div className="relative w-full h-[420px] bg-[#151515] border border-white/10 rounded-2xl overflow-hidden shadow-[0_0_25px_rgba(139,92,246,0.3)]">
+                <div className="flex-1 relative w-full">
+                    <div className="relative w-full h-[300px] sm:h-[350px] md:h-[420px] bg-[#151515] border border-white/10 rounded-2xl overflow-hidden shadow-[0_0_25px_rgba(139,92,246,0.3)]">
                         <img src={heroImage} alt="Hero" className="absolute inset-0 w-full h-full object-cover" />
                         <div className="absolute inset-0 pointer-events-none">
-                            <div className="absolute top-10 left-10 text-5xl text-neon-cyan opacity-40 font-mono animate-pulse translate-x-3 translate-y-3">{'{}'}</div>
-                            <div className="absolute bottom-10 right-10 text-3xl text-neon-magenta opacity-40 font-mono animate-pulse -translate-x-3 -translate-y-3">{'//'}</div>
+                            <div className="absolute top-6 left-6 md:top-10 md:left-10 text-4xl md:text-5xl text-neon-cyan opacity-40 font-mono animate-pulse translate-x-3 translate-y-3">{'{}'}</div>
+                            <div className="absolute bottom-6 right-6 md:bottom-10 md:right-10 text-2xl md:text-3xl text-neon-magenta opacity-40 font-mono animate-pulse -translate-x-3 -translate-y-3">{'//'}</div>
                         </div>
                         <div className="absolute -top-1 -left-1 w-5 h-5 border-t-2 border-l-2 border-purple-500 rounded-tl-lg"></div>
                         <div className="absolute -bottom-1 -right-1 w-5 h-5 border-b-2 border-r-2 border-purple-500 rounded-br-lg"></div>
@@ -251,24 +251,24 @@ const About = () => {
         { name: 'Dev Tools & Scripts', icon: Terminal, desc: 'Custom utilities, CLI tools, and automation scripts.' },
     ];
     return (
-        <section id="about" className="py-24 relative z-10 bg-[#0A0A0A] border-t border-b border-neon-blue/10">
-            <div className="max-w-7xl mx-auto px-6">
+        <section id="about" className="py-16 md:py-24 relative z-10 bg-[#0A0A0A] border-t border-b border-neon-blue/10">
+            <div className="max-w-7xl mx-auto px-4 md:px-6">
                 <SectionHeader title="The Founder — ObscuraCode" subtitle="Precision, Elegance, and Intentional Engineering." id="about" />
-                <div className="grid lg:grid-cols-3 gap-12">
-                    <AnimatedElement delay={300} className="lg:col-span-1 space-y-6 text-gray-300 leading-relaxed font-light">
+                <div className="grid lg:grid-cols-3 gap-8 md:gap-12">
+                    <AnimatedElement delay={300} className="lg:col-span-1 space-y-6 text-gray-300 leading-relaxed font-light text-sm md:text-base">
                         <p className="border-l-4 border-neon-magenta pl-4 italic">DarkStackStudios operates with a clear manifesto: to build software with unparalleled quality, intentional engineering, and an obsession for clean, efficient code.</p>
                         <p>Every project reflects a deep focus on efficiency and elegant solutions. The studio's commitment, driven by the ObscuraCode identity, is to deliver precise, purpose-built software experiences.</p>
                         <p className="text-sm font-mono text-neon-cyan pt-4"><span className="text-neon-magenta"># SaintLabs</span> is the social pulse—where the code meets the community.</p>
                     </AnimatedElement>
-                    <div className="lg:col-span-2 grid md:grid-cols-3 gap-6">
+                    <div className="lg:col-span-2 grid md:grid-cols-3 gap-4 md:gap-6">
                         {skills.map((skill, index) => (
                             <AnimatedElement key={index} delay={300 + index * 200}>
-                                <div className="group p-6 bg-[#181818] border border-white/5 shadow-xl hover:border-neon-cyan transition-all duration-300 transform hover:scale-[1.03] rounded-lg">
-                                    <div className="flex items-center gap-3 mb-4">
-                                        <skill.icon className="w-6 h-6 text-neon-magenta group-hover:whitetransition-colors" />
-                                        <h3 className="text-white font-mono font-bold text-lg">{skill.name}</h3>
+                                <div className="group p-5 md:p-6 bg-[#181818] border border-white/5 shadow-xl hover:border-neon-cyan transition-all duration-300 transform hover:scale-[1.03] rounded-lg h-full">
+                                    <div className="flex items-center gap-3 mb-3 md:mb-4">
+                                        <skill.icon className="w-5 h-5 md:w-6 md:h-6 text-neon-magenta group-hover:text-white transition-colors" />
+                                        <h3 className="text-white font-mono font-bold text-base md:text-lg">{skill.name}</h3>
                                     </div>
-                                    <p className="text-gray-400 text-sm">{skill.desc}</p>
+                                    <p className="text-gray-400 text-xs md:text-sm">{skill.desc}</p>
                                 </div>
                             </AnimatedElement>
                         ))}
@@ -290,10 +290,10 @@ const Services = () => {
         { title: 'Consulting & Architecture', icon: Server, color: 'text-purple-400' },
     ];
     return (
-        <section id="services" className="py-24 relative z-10">
-            <div className="max-w-7xl mx-auto px-6">
+        <section id="services" className="py-16 md:py-24 relative z-10">
+            <div className="max-w-7xl mx-auto px-4 md:px-6">
                 <SectionHeader title="My Code, My Canvas" subtitle="A structured approach to delivering intentional software." id="services" />
-                <div className="relative flex flex-col md:grid md:grid-cols-4 gap-12 text-center mt-16">
+                <div className="relative flex flex-col md:grid md:grid-cols-4 gap-8 md:gap-12 text-center mt-12 md:mt-16">
                     <div className="absolute hidden md:block inset-0 pointer-events-none">
                         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 p-4 border border-white/20 rounded-full bg-black shadow-[0_0_10px_rgba(255,255,255,0.1)]">
                             <Code className="w-8 h-8 text-white animate-spin-slow" />
@@ -304,7 +304,7 @@ const Services = () => {
                     </div>
                     {services.map((service, index) => (
                         <AnimatedElement key={index} delay={300 + index * 150}>
-                            <div className={`group relative p-6 bg-[#141414] border border-white/5 transition-all duration-500 hover:shadow-[0_0_25px_rgba(30,144,255,0.5)] transform hover:-translate-y-2 rounded-lg`}
+                            <div className={`group relative p-6 bg-[#141414] border border-white/5 transition-all duration-500 hover:shadow-[0_0_25px_rgba(30,144,255,0.5)] transform hover:-translate-y-2 rounded-lg h-full`}
                             >
                                 <div className={`p-4 mx-auto w-fit border border-white/10 ${service.color} mb-6 transition-colors rounded-sm`}>
                                     <service.icon className={`w-8 h-8 ${service.color} group-hover:animate-pulse transition-colors`} />
@@ -331,20 +331,20 @@ const Projects = () => {
         { name: 'SoloFlow Project Manager', desc: 'A hyper-minimalist Kanban board designed for maximum studio efficiency.', tags: ['Vue.js', 'Firestore'], link: '#', color: 'purple-500' },
     ];
     return (
-        <section id="projects" className="py-24 bg-[#0A0A0A] relative z-10 border-t border-neon-magenta/10">
-            <div className="max-w-7xl mx-auto px-6">
+        <section id="projects" className="py-16 md:py-24 bg-[#0A0A0A] relative z-10 border-t border-neon-magenta/10">
+            <div className="max-w-7xl mx-auto px-4 md:px-6">
                 <SectionHeader title="Projects Born in Code" subtitle="Showcasing the intersection of creativity and logic." id="projects" />
-                <div className="grid md:grid-cols-2 gap-8">
+                <div className="grid md:grid-cols-2 gap-6 md:gap-8">
                     {projects.map((project, index) => (
                         <AnimatedElement key={index} delay={300 + index * 150}>
-                            <a href={project.link} className="block group relative overflow-hidden rounded-lg border border-white/5 bg-[#121212] hover:bg-[#181818] transition-all duration-500">
+                            <a href={project.link} className="block group relative overflow-hidden rounded-lg border border-white/5 bg-[#121212] hover:bg-[#181818] transition-all duration-500 h-full">
                                 <div className={`absolute inset-0 bg-gradient-to-r from-${project.color}/0 via-${project.color}/10 to-${project.color}/0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 translate-x-[-100%] group-hover:translate-x-[100%] transform`}></div>
-                                <div className="p-8 relative z-10">
+                                <div className="p-6 md:p-8 relative z-10">
                                     <div className="flex justify-between items-start mb-4">
-                                        <h3 className="text-2xl font-mono font-bold text-white group-hover:text-neon-cyan transition-colors">{project.name}</h3>
+                                        <h3 className="text-xl md:text-2xl font-mono font-bold text-white group-hover:text-neon-cyan transition-colors">{project.name}</h3>
                                         <ExternalLink className="w-5 h-5 text-gray-500 group-hover:text-white transition-colors" />
                                     </div>
-                                    <p className="text-gray-400 mb-6 leading-relaxed">{project.desc}</p>
+                                    <p className="text-gray-400 mb-6 leading-relaxed text-sm md:text-base">{project.desc}</p>
                                     <div className="flex flex-wrap gap-2">
                                         {project.tags.map(tag => (
                                             <span key={tag} className="px-3 py-1 text-xs font-mono border border-white/10 rounded-full text-gray-300 bg-white/5">{tag}</span>
@@ -365,19 +365,19 @@ const Projects = () => {
  * COMPONENT: CONTACT
  */
 const Contact = () => (
-    <section id="contact" className="py-24 relative z-10 bg-[#050505]">
-        <div className="max-w-4xl mx-auto px-6 text-center">
+    <section id="contact" className="py-16 md:py-24 relative z-10 bg-[#050505]">
+        <div className="max-w-4xl mx-auto px-4 md:px-6 text-center">
             <SectionHeader title="Initialise Connection" id="contact" />
             <AnimatedElement delay={300}>
-                <p className="text-xl text-gray-300 mb-12 max-w-2xl mx-auto">Ready to bring a vision to life? Whether it's a complex AI integration or a sleek web experience, I'm ready to deploy.</p>
-                <div className="bg-[#111] p-8 md:p-12 rounded-xl border border-white/5 shadow-2xl relative overflow-hidden group">
+                <p className="text-lg md:text-xl text-gray-300 mb-8 md:mb-12 max-w-2xl mx-auto">Ready to bring a vision to life? Whether it's a complex AI integration or a sleek web experience, I'm ready to deploy.</p>
+                <div className="bg-[#111] p-6 md:p-12 rounded-xl border border-white/5 shadow-2xl relative overflow-hidden group">
                     <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:40px_40px] opacity-20 pointer-events-none"></div>
                     <div className="relative z-10 flex flex-col md:flex-row justify-center items-center gap-6 md:gap-12">
-                        <a href="mailto:contact@darkstackstudios.com" className="flex items-center gap-3 text-gray-300 hover:text-neon-cyan transition-colors font-mono"><div className="p-3 bg-white/5 rounded-full"><Mail className="w-6 h-6" /></div><span>contact@darkstackstudios.com</span></a>
-                        <a href="#" className="flex items-center gap-3 text-gray-300 hover:text-neon-magenta transition-colors font-mono"><div className="p-3 bg-white/5 rounded-full"><Github className="w-6 h-6" /></div><span>@DarkStackStudios</span></a>
-                        <a href="#" className="flex items-center gap-3 text-gray-300 hover:text-neon-blue transition-colors font-mono"><div className="p-3 bg-white/5 rounded-full"><Twitter className="w-6 h-6" /></div><span>@SaintLabs</span></a>
+                        <a href="mailto:contact@darkstackstudios.com" className="flex items-center gap-3 text-gray-300 hover:text-neon-cyan transition-colors font-mono text-sm md:text-base"><div className="p-3 bg-white/5 rounded-full"><Mail className="w-5 h-5 md:w-6 md:h-6" /></div><span>contact@darkstackstudios.com</span></a>
+                        <a href="#" className="flex items-center gap-3 text-gray-300 hover:text-neon-magenta transition-colors font-mono text-sm md:text-base"><div className="p-3 bg-white/5 rounded-full"><Github className="w-5 h-5 md:w-6 md:h-6" /></div><span>@DarkStackStudios</span></a>
+                        <a href="#" className="flex items-center gap-3 text-gray-300 hover:text-neon-blue transition-colors font-mono text-sm md:text-base"><div className="p-3 bg-white/5 rounded-full"><Twitter className="w-5 h-5 md:w-6 md:h-6" /></div><span>@SaintLabs</span></a>
                     </div>
-                    <div className="mt-12"><GlowingButton href="mailto:contact@darkstackstudios.com" primary={true}>SEND TRANSMISSION</GlowingButton></div>
+                    <div className="mt-8 md:mt-12"><GlowingButton href="mailto:contact@darkstackstudios.com" primary={true}>SEND TRANSMISSION</GlowingButton></div>
                 </div>
             </AnimatedElement>
         </div>
