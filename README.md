@@ -2,19 +2,27 @@
 <img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
 </div>
 
-# Run and deploy your AI Studio app
+# DarkStackStudios — NewDarkStack
 
-This contains everything you need to run your app locally.
+Minimal, ultra‑dark portfolio app with neon accents. Built with React + Vite + Tailwind, mirroring the “Solo Studio” aesthetic and hero layout.
 
-View your app in AI Studio: https://ai.studio/apps/drive/1n251h6LQIlT2u1SBT_3Zk3_mOqd2RHyO
+## Quick Start
 
-## Run Locally
+- Install: `npm install`
+- Dev: `npm run dev`
+- Preview: `npm run build && npm run preview`
 
-**Prerequisites:**  Node.js
+## Project Structure
 
+- `src/main.tsx` bootstraps React and mounts `App.tsx`
+- `public/hero-image.jpg` is the hero image used in the landing section
+- `tailwind.config.js` defines neon palette and animations
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+## Hero Image
+
+- Place your file at `public/hero-image.jpg`
+- Component references it via `/hero-image.jpg` to leverage Vite static serving
+
+## Environment
+
+- Optional: set `GEMINI_API_KEY` in `.env.local` if integrating AI features
