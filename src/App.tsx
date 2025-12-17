@@ -237,9 +237,9 @@ const Navbar = () => {
             <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
                 <a href="#" className="flex items-center space-x-2 group" aria-label="DarkStack Studios Home">
                     <Code className="text-neon-magenta w-6 h-6 group-hover:rotate-6 transition-transform" aria-hidden="true" />
-                    <span className="text-xl font-mono font-bold tracking-tighter text-white">
-                        DarkStack<span className="text-neon-cyan">Studios</span>
-                    </span>
+                        <span className="text-xl font-mono font-bold tracking-tighter text-white">
+                            DarkStack<span className="text-cyan-300">Studios</span>
+                        </span>
                 </a>
 
                 {/* Desktop Nav */}
@@ -314,13 +314,13 @@ const Hero = () => {
             <div className="relative z-20 flex flex-col md:flex-row items-center gap-16 max-w-6xl mx-auto">
 
                 {/* TEXT SECTION */}
-                <div className="flex-1 text-center md:text-left">
-                    <h1 className="text-5xl md:text-6xl font-extrabold text-white leading-tight text-shadow-neon animate-glow">
-                        DarkStackStudios
+                <div className="flex-1 text-center md:text-left bg-black/40 backdrop-blur-sm rounded-xl p-8">
+                    <h1 className="text-5xl md:text-6xl font-extrabold text-white leading-tight">
+                        DarkStack<span className="text-cyan-400">Studios</span>
                     </h1>
 
                     <p className="text-lg text-gray-300 mt-4 max-w-md mx-auto md:mx-0">
-                        A hyper-evolved AI development studio led by <span className="text-neon-cyan font-semibold animate-pulse-light">ObscuraCode</span>.
+                        A hyper-evolved AI development studio led by <span className="text-cyan-400 font-semibold">ObscuraCode</span>.
                         Fully overhauled. Fully animated. Fully engineered for the future.
                     </p>
 
@@ -348,11 +348,7 @@ const Hero = () => {
                         ) : (
                             // ObscuraCode placeholder
                             <div className="w-full h-[420px] rounded-xl opacity-90 bg-gradient-to-br from-neon-cyan/20 via-neon-magenta/20 to-neon-blue/20 flex items-center justify-center">
-                                <div className="text-center space-y-4">
-                                    <Code className="w-16 h-16 text-neon-cyan mx-auto animate-pulse" />
-                                    <p className="text-white font-mono text-lg">ObscuraCode</p>
-                                    <p className="text-gray-400 font-mono text-sm">AI Development Studio</p>
-                                </div>
+                                <Code className="w-20 h-20 text-neon-cyan mx-auto animate-pulse" />
                             </div>
                         )}
 
