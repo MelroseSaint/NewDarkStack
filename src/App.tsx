@@ -299,6 +299,7 @@ const Navbar = () => {
  * COMPONENT: HERO SECTION
  */
 const Hero = () => {
+    const [imageError, setImageError] = useState(false);
 
     return (
         <section className="relative w-full min-h-screen flex items-center justify-center px-6 py-24 overflow-hidden">
@@ -333,19 +334,25 @@ const Hero = () => {
                 <div className="flex-1 relative w-full">
                     <div className="bg-[#151515] border border-white/10 rounded-2xl p-4 relative shadow-[0_0_25px_rgba(139,92,246,0.3)]">
 
-                        <div className="w-full h-[420px] rounded-xl bg-gradient-to-br from-gray-900 via-black to-gray-900 border border-gray-800 flex items-center justify-center relative overflow-hidden">
-                            {/* Animated grid pattern */}
-                            <div className="absolute inset-0 opacity-20">
-                                <div className="h-full w-full bg-[linear-gradient(to_right,rgba(255,255,255,0.1)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.1)_1px,transparent_1px)] bg-[size:20px_20px]"></div>
-                            </div>
-                            {/* Central glow effect */}
-                            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-cyan-500/10 to-transparent animate-pulse"></div>
-                            {/* Clean code icon without text */}
-                            <div className="relative z-10 flex items-center justify-center">
-                                <div className="w-24 h-24 rounded-full bg-gradient-to-br from-cyan-500/20 to-blue-500/20 flex items-center justify-center border border-cyan-500/30">
-                                    <Code className="w-12 h-12 text-cyan-400" />
+                        <div className="relative w-full h-[420px] rounded-xl overflow-hidden">
+                            {!imageError ? (
+                                <>
+                                    <img
+                                        src="/hero-image.jpg"
+                                        alt="Background visual"
+                                        className="w-full h-full object-cover"
+                                    />
+                                    {/* Dark overlay for better text contrast in the text section */}
+                                    <div className="absolute inset-0 bg-black/20"></div>
+                                </>
+                            ) : (
+                                // Fallback if image fails to load
+                                <div className="w-full h-full bg-gradient-to-br from-gray-900 via-black to-gray-900 flex items-center justify-center">
+                                    <div className="w-24 h-24 rounded-full bg-gradient-to-br from-cyan-500/20 to-blue-500/20 flex items-center justify-center border border-cyan-500/30">
+                                        <Code className="w-12 h-12 text-cyan-400" />
+                                    </div>
                                 </div>
-                            </div>
+                            )}
                         </div>
 
                         {/* Small neon accent corners */}
