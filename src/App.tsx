@@ -42,44 +42,45 @@ interface SectionHeaderProps {
 const AnimatedBackground = () => {
     const containerRef = useRef<HTMLDivElement>(null);
 
-    useEffect(() => {
-        const container = containerRef.current;
-        if (!container) return;
+        useEffect(() => {
+            const container = containerRef.current;
+            if (!container) return;
 
-        // Generate a fixed number of particles (acting as code rain/energy flow)
-        const particleCount = 75;
-        const particles: HTMLDivElement[] = [];
+            // Generate a fixed number of particles (acting as code rain/energy flow)
+            const particleCount = 50; // Reduced for performance
+            const particles: HTMLDivElement[] = [];
+            const colors = ['#00ffcc', '#ff0080', '#1e90ff']; // Direct color values
 
-        for (let i = 0; i < particleCount; i++) {
-            const p = document.createElement('div');
-            p.className = 'absolute rounded-full pointer-events-none opacity-0 transition-opacity duration-1000';
+            for (let i = 0; i < particleCount; i++) {
+                const p = document.createElement('div');
+                p.className = 'absolute rounded-full pointer-events-none transition-opacity duration-1000';
+                p.setAttribute('aria-hidden', 'true');
 
-            // Randomize position
-            p.style.left = `${Math.random() * 100}vw`;
-            p.style.top = `${Math.random() * 100}vh`;
+                // Randomize position
+                p.style.left = `${Math.random() * 100}%`;
+                p.style.top = `${Math.random() * 100}%`;
 
-            // Randomize size and color
-            const size = Math.random() * 2 + 1; // 1px to 3px
-            p.style.width = `${size}px`;
-            p.style.height = `${size}px`;
-            const colorIndex = Math.floor(Math.random() * 3);
-            const colors = ['var(--neon-cyan)', 'var(--neon-magenta)', 'var(--neon-blue)'];
-            p.style.backgroundColor = colors[colorIndex];
+                // Randomize size and color
+                const size = Math.random() * 2 + 1;
+                p.style.width = `${size}px`;
+                p.style.height = `${size}px`;
+                p.style.backgroundColor = colors[Math.floor(Math.random() * 3)];
 
-            // Custom animation delay and duration for flowing/glitch effect
-            p.style.animation = `flow ${Math.random() * 10 + 10}s linear infinite, glitch-fade ${Math.random() * 5}s linear infinite`;
-            p.style.animationDelay = `${Math.random() * 10}s`;
+                // Custom animation delay and duration
+                const flowDuration = Math.random() * 10 + 10;
+                const glitchDuration = Math.random() * 5 + 2;
+                p.style.animation = `flow ${flowDuration}s linear infinite, glitch-fade ${glitchDuration}s linear infinite`;
+                p.style.animationDelay = `${Math.random() * 10}s`;
+                p.style.opacity = '0.4';
 
-            // Initial fade in
-            setTimeout(() => p.style.opacity = '0.4', 100);
-
-            container.appendChild(p);
-            particles.push(p);
-        }
+                container.appendChild(p);
+                particles.push(p);
+            }
 
         // Add CSS keyframes dynamically
         const styleSheet = document.createElement("style");
         styleSheet.type = "text/css";
+        styleSheet.id = 'animated-background-styles';
         styleSheet.innerText = `
       @keyframes flow {
         0% { transform: translateY(0) translateX(0); opacity: 0.4; }
@@ -91,13 +92,19 @@ const AnimatedBackground = () => {
         50% { filter: brightness(2); }
       }
     `;
-        document.head.appendChild(styleSheet);
+
+        if (!document.head.querySelector('#animated-background-styles')) {
+            document.head.appendChild(styleSheet);
+        }
 
         return () => {
-            // Cleanup
+            // Cleanup particles
+            particles.forEach(p => p.remove());
             if (container) container.innerHTML = '';
-            if (document.head.contains(styleSheet)) {
-                document.head.removeChild(styleSheet);
+            // Cleanup stylesheet
+            const existingStyleSheet = document.head.querySelector('#animated-background-styles');
+            if (existingStyleSheet) {
+                existingStyleSheet.remove();
             }
         };
     }, []);
@@ -206,9 +213,16 @@ const Navbar = () => {
     const [scrolled, setScrolled] = useState(false);
 
     useEffect(() => {
-        const handleScroll = () => setScrolled(window.scrollY > 50);
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
+        let timeoutId: NodeJS.Timeout;
+        const handleScroll = () => {
+            if (timeoutId) clearTimeout(timeoutId);
+            timeoutId = setTimeout(() => setScrolled(window.scrollY > 50), 16);
+        };
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+            if (timeoutId) clearTimeout(timeoutId);
+        };
     }, []);
 
     const navLinks = [
@@ -219,22 +233,23 @@ const Navbar = () => {
     ];
 
     return (
-        <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-black/95 backdrop-blur-md border-b border-white/10' : 'bg-transparent'}`}>
+        <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-black/95 backdrop-blur-md border-b border-white/10' : 'bg-transparent'}`} role="navigation" aria-label="Main navigation">
             <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-                <a href="#" className="flex items-center space-x-2 group">
-                    <Code className="text-neon-magenta w-6 h-6 group-hover:rotate-6 transition-transform" />
+                <a href="#" className="flex items-center space-x-2 group" aria-label="DarkStack Studios Home">
+                    <Code className="text-neon-magenta w-6 h-6 group-hover:rotate-6 transition-transform" aria-hidden="true" />
                     <span className="text-xl font-mono font-bold tracking-tighter text-white">
                         DarkStack<span className="text-neon-cyan">Studios</span>
                     </span>
                 </a>
 
                 {/* Desktop Nav */}
-                <div className="hidden md:flex items-center space-x-8">
+                <div className="hidden md:flex items-center space-x-8" role="menubar">
                     {navLinks.map((link) => (
                         <a
                             key={link.name}
                             href={link.href}
                             className="font-mono text-sm text-gray-400 hover:text-neon-cyan transition-colors"
+                            role="menuitem"
                         >
                             {link.name}
                         </a>
@@ -248,7 +263,12 @@ const Navbar = () => {
                 </div>
 
                 {/* Mobile Toggle */}
-                <button className="md:hidden text-white" onClick={() => setIsOpen(!isOpen)}>
+                <button 
+                    className="md:hidden text-white" 
+                    onClick={() => setIsOpen(!isOpen)}
+                    aria-label={isOpen ? "Close menu" : "Open menu"}
+                    aria-expanded={isOpen}
+                >
                     {isOpen ? <X /> : <Menu />}
                 </button>
             </div>
@@ -295,12 +315,12 @@ const Hero = () => {
 
                 {/* TEXT SECTION */}
                 <div className="flex-1 text-center md:text-left">
-                    <h1 className="text-5xl md:text-6xl font-extrabold text-white leading-tight drop-shadow-[0_0_20px_rgba(139,92,246,0.6)]">
+                    <h1 className="text-5xl md:text-6xl font-extrabold text-white leading-tight text-shadow-neon animate-glow">
                         DarkStackStudios
                     </h1>
 
                     <p className="text-lg text-gray-300 mt-4 max-w-md mx-auto md:mx-0">
-                        A hyper-evolved AI development studio led by <span className="text-purple-400 font-semibold">ObscuraCode</span>.
+                        A hyper-evolved AI development studio led by <span className="text-neon-cyan font-semibold animate-pulse-light">ObscuraCode</span>.
                         Fully overhauled. Fully animated. Fully engineered for the future.
                     </p>
 
@@ -326,12 +346,14 @@ const Hero = () => {
                                 onError={() => setImageError(true)}
                             />
                         ) : (
-                            // Fallback Image instead of text
-                            <img
-                                src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop"
-                                alt="Hero Fallback"
-                                className="w-full h-[420px] object-cover rounded-xl opacity-90"
-                            />
+                            // ObscuraCode placeholder
+                            <div className="w-full h-[420px] rounded-xl opacity-90 bg-gradient-to-br from-neon-cyan/20 via-neon-magenta/20 to-neon-blue/20 flex items-center justify-center">
+                                <div className="text-center space-y-4">
+                                    <Code className="w-16 h-16 text-neon-cyan mx-auto animate-pulse" />
+                                    <p className="text-white font-mono text-lg">ObscuraCode</p>
+                                    <p className="text-gray-400 font-mono text-sm">AI Development Studio</p>
+                                </div>
+                            </div>
                         )}
 
                         {/* Small neon accent corners */}
@@ -462,25 +484,39 @@ const Projects = () => {
             color: 'neon-cyan'
         },
         {
-            name: 'SaintLabs Social Dashboard',
-            desc: 'A custom, minimal dashboard for managing DarkStack social presence.',
-            tags: ['Svelte', 'FireBase', 'Analytics'],
+            name: 'DealMentorAi',
+            desc: 'AI-powered deal analysis and mentorship platform for investment decisions.',
+            tags: ['Python', 'TensorFlow', 'React', 'FastAPI'],
             link: '#',
             color: 'neon-magenta'
+        },
+        {
+            name: 'Skimmerwatcher',
+            desc: 'Advanced fraud detection system using machine learning to identify skimming devices.',
+            tags: ['Rust', 'ML', 'Security', 'WebAssembly'],
+            link: '#',
+            color: 'neon-blue'
         },
         {
             name: 'Obscura CLI Tool',
             desc: 'A terminal utility for quick development setup and config management.',
             tags: ['Rust', 'CLI', 'WebAssembly'],
             link: '#',
-            color: 'neon-blue'
+            color: 'purple-500'
+        },
+        {
+            name: 'SaintLabs Social Dashboard',
+            desc: 'A custom, minimal dashboard for managing DarkStack social presence.',
+            tags: ['Svelte', 'FireBase', 'Analytics'],
+            link: '#',
+            color: 'neon-cyan'
         },
         {
             name: 'SoloFlow Project Manager',
             desc: 'A hyper-minimalist Kanban board designed for maximum studio efficiency.',
             tags: ['Vue.js', 'Firestore'],
             link: '#',
-            color: 'purple-500'
+            color: 'neon-magenta'
         }
     ];
 
@@ -497,7 +533,12 @@ const Projects = () => {
                                 className="block group relative overflow-hidden rounded-lg border border-white/5 bg-[#121212] hover:bg-[#181818] transition-all duration-500"
                             >
                                 {/* Gradient Glow on Hover */}
-                                <div className={`absolute inset-0 bg-gradient-to-r from-${project.color}/0 via-${project.color}/10 to-${project.color}/0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 translate-x-[-100%] group-hover:translate-x-[100%] transform`}></div>
+                                <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 translate-x-[-100%] group-hover:translate-x-[100%] transform ${
+                                    project.color === 'neon-cyan' ? 'bg-gradient-to-r from-transparent via-cyan-500/10 to-transparent' :
+                                    project.color === 'neon-magenta' ? 'bg-gradient-to-r from-transparent via-pink-500/10 to-transparent' :
+                                    project.color === 'neon-blue' ? 'bg-gradient-to-r from-transparent via-blue-500/10 to-transparent' :
+                                    'bg-gradient-to-r from-transparent via-purple-500/10 to-transparent'
+                                }`}></div>
 
                                 <div className="p-8 relative z-10">
                                     <div className="flex justify-between items-start mb-4">
@@ -514,7 +555,12 @@ const Projects = () => {
                                     </div>
                                 </div>
                                 {/* Bottom Line */}
-                                <div className={`absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-${project.color} to-transparent opacity-30 group-hover:opacity-100`}></div>
+                                <div className={`absolute bottom-0 left-0 w-full h-1 opacity-30 group-hover:opacity-100 ${
+                                    project.color === 'neon-cyan' ? 'bg-gradient-to-r from-transparent via-cyan-500 to-transparent' :
+                                    project.color === 'neon-magenta' ? 'bg-gradient-to-r from-transparent via-pink-500 to-transparent' :
+                                    project.color === 'neon-blue' ? 'bg-gradient-to-r from-transparent via-blue-500 to-transparent' :
+                                    'bg-gradient-to-r from-transparent via-purple-500 to-transparent'
+                                }`}></div>
                             </a>
                         </AnimatedElement>
                     ))}
@@ -613,7 +659,15 @@ function App() {
         .animate-pulse-slow { animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
         .animate-pulse-light { animation: pulse 3s ease-in-out infinite; }
         .animate-blink { animation: blink 1s step-end infinite; }
+        .animate-glow { animation: glow 2s ease-in-out infinite alternate; }
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+        @keyframes glow { 
+          0% { filter: drop-shadow(0 0 5px currentColor); }
+          100% { filter: drop-shadow(0 0 20px currentColor) drop-shadow(0 0 30px currentColor); }
+        }
+        .text-shadow-neon { 
+          text-shadow: 0 0 10px currentColor, 0 0 20px currentColor, 0 0 30px currentColor;
+        }
       `}</style>
 
             <AnimatedBackground />
