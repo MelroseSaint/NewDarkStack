@@ -299,16 +299,11 @@ const Navbar = () => {
  * COMPONENT: HERO SECTION
  */
 const Hero = () => {
-    const [imageError, setImageError] = useState(false);
 
     return (
         <section className="relative w-full min-h-screen flex items-center justify-center px-6 py-24 overflow-hidden">
 
-            {/* Background animated grid (already handled by global AnimatedBackground, but keeping local dots for extra flair) */}
-            <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                <div className="absolute top-12 left-16 w-2 h-2 bg-purple-500 rounded-full animate-ping opacity-70"></div>
-                <div className="absolute bottom-20 right-20 w-3 h-3 bg-blue-500 rounded-full animate-pulse opacity-70"></div>
-            </div>
+
 
             {/* Main content wrapper */}
             <div className="relative z-20 flex flex-col md:flex-row items-center gap-16 max-w-6xl mx-auto">
@@ -338,19 +333,20 @@ const Hero = () => {
                 <div className="flex-1 relative w-full">
                     <div className="bg-[#151515] border border-white/10 rounded-2xl p-4 relative shadow-[0_0_25px_rgba(139,92,246,0.3)]">
 
-                        {!imageError ? (
-                            <img
-                                src="/hero-image.jpg"
-                                alt="Hero"
-                                className="w-full h-[420px] object-cover rounded-xl"
-                                onError={() => setImageError(true)}
-                            />
-                        ) : (
-                            // ObscuraCode placeholder
-                            <div className="w-full h-[420px] rounded-xl opacity-90 bg-gradient-to-br from-neon-cyan/20 via-neon-magenta/20 to-neon-blue/20 flex items-center justify-center">
-                                <Code className="w-20 h-20 text-neon-cyan mx-auto animate-pulse" />
+                        <div className="w-full h-[420px] rounded-xl bg-gradient-to-br from-gray-900 via-black to-gray-900 border border-gray-800 flex items-center justify-center relative overflow-hidden">
+                            {/* Animated grid pattern */}
+                            <div className="absolute inset-0 opacity-20">
+                                <div className="h-full w-full bg-[linear-gradient(to_right,rgba(255,255,255,0.1)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.1)_1px,transparent_1px)] bg-[size:20px_20px]"></div>
                             </div>
-                        )}
+                            {/* Central glow effect */}
+                            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-cyan-500/10 to-transparent animate-pulse"></div>
+                            {/* Clean code icon without text */}
+                            <div className="relative z-10 flex items-center justify-center">
+                                <div className="w-24 h-24 rounded-full bg-gradient-to-br from-cyan-500/20 to-blue-500/20 flex items-center justify-center border border-cyan-500/30">
+                                    <Code className="w-12 h-12 text-cyan-400" />
+                                </div>
+                            </div>
+                        </div>
 
                         {/* Small neon accent corners */}
                         <div className="absolute -top-1 -left-1 w-5 h-5 border-t-2 border-l-2 border-purple-500 rounded-tl-lg"></div>
