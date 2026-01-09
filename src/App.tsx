@@ -371,9 +371,9 @@ const Hero = () => {
  */
 const About = () => {
     const skills = [
-        { name: 'AI Engineering', icon: Cpu, desc: 'LLM tuning, data science, and intelligent automation.' },
+        { name: 'AI Engineering', icon: Cpu, desc: 'LLM tuning and data science.' },
         { name: 'Full-Stack Web Dev', icon: Database, desc: 'Minimal, robust, and optimized web and SaaS platforms.' },
-        { name: 'Dev Tools & Scripts', icon: Terminal, desc: 'Custom utilities, CLI tools, and automation scripts.' },
+        { name: 'Dev Tools & Scripts', icon: Terminal, desc: 'Custom utilities and CLI tools.' },
     ];
 
     return (
@@ -424,7 +424,7 @@ const About = () => {
  */
 const Services = () => {
     const services = [
-        { title: 'AI Tooling & Automation', icon: Cpu, color: 'text-neon-cyan' },
+        { title: 'AI Tooling', icon: Cpu, color: 'text-neon-cyan' },
         { title: 'SaaS & Web Dev', icon: Monitor, color: 'text-neon-blue' },
         { title: 'Digital Experiences', icon: Smartphone, color: 'text-neon-magenta' },
         { title: 'Consulting & Architecture', icon: Server, color: 'text-purple-400' }
@@ -476,32 +476,53 @@ const Services = () => {
 const Projects = () => {
     const projects = [
         {
+            name: 'SteadyCoachAI',
+            desc: 'AI-powered coaching platform for steady progress and goal achievement.',
+            tags: ['AI', 'React', 'Node.js'],
+            link: '#',
+            color: 'neon-cyan'
+        },
+        {
+            name: 'PlanNest',
+            desc: 'Plannest (formerly Stars Binder) – a digital planning tool for teachers that streamlines lesson plans, newsletters, and admin tasks, with AI-powered activity suggestions.',
+            tags: ['Web App', 'Planning', 'Collaboration'],
+            link: 'https://www.plannest.online/',
+            color: 'neon-magenta'
+        },
+        {
+            name: 'RepoGenV2',
+            desc: 'Advanced repository generation tool with enhanced AI capabilities.',
+            tags: ['AI', 'Code Generation', 'Dev Tools'],
+            link: '#',
+            color: 'neon-blue'
+        },
+        {
             name: 'Repo Generator AI',
             desc: 'Turn code into fully structured, documented repositories using generative AI.',
             tags: ['React', 'Node.js', 'LLMs', 'API'],
             link: '#',
-            color: 'neon-cyan'
+            color: 'purple-500'
         },
         {
             name: 'DealMentorAi',
             desc: 'AI-powered deal analysis and mentorship platform for investment decisions.',
             tags: ['Python', 'TensorFlow', 'React', 'FastAPI'],
             link: '#',
-            color: 'neon-magenta'
+            color: 'neon-cyan'
         },
         {
             name: 'Skimmerwatcher',
             desc: 'Advanced fraud detection system using machine learning to identify skimming devices.',
             tags: ['Rust', 'ML', 'Security', 'WebAssembly'],
             link: '#',
-            color: 'neon-blue'
+            color: 'neon-magenta'
         },
         {
             name: 'Obscura CLI Tool',
             desc: 'A terminal utility for quick development setup and config management.',
             tags: ['Rust', 'CLI', 'WebAssembly'],
             link: '#',
-            color: 'purple-500'
+            color: 'neon-blue'
         },
         {
             name: 'SaintLabs Social Dashboard',
@@ -588,20 +609,6 @@ const Contact = () => {
                         <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:40px_40px] opacity-20 pointer-events-none"></div>
 
                         <div className="relative z-10 flex flex-col md:flex-row justify-center items-center gap-6 md:gap-12">
-                            <a href="mailto:contact@darkstackstudios.com" className="flex items-center gap-3 text-gray-300 hover:text-neon-cyan transition-colors font-mono">
-                                <div className="p-3 bg-white/5 rounded-full">
-                                    <Mail className="w-6 h-6" />
-                                </div>
-                                <span>contact@darkstackstudios.com</span>
-                            </a>
-
-                            <a href="#" className="flex items-center gap-3 text-gray-300 hover:text-neon-magenta transition-colors font-mono">
-                                <div className="p-3 bg-white/5 rounded-full">
-                                    <Github className="w-6 h-6" />
-                                </div>
-                                <span>@DarkStackStudios</span>
-                            </a>
-
                             <a href="#" className="flex items-center gap-3 text-gray-300 hover:text-neon-blue transition-colors font-mono">
                                 <div className="p-3 bg-white/5 rounded-full">
                                     <Twitter className="w-6 h-6" />
@@ -611,9 +618,6 @@ const Contact = () => {
                         </div>
 
                         <div className="mt-12">
-                            <GlowingButton href="mailto:contact@darkstackstudios.com" primary={true}>
-                                SEND TRANSMISSION
-                            </GlowingButton>
                         </div>
                     </div>
                 </AnimatedElement>
