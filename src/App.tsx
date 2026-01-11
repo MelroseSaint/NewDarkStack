@@ -518,6 +518,13 @@ const Projects = () => {
             color: 'neon-magenta'
         },
         {
+            name: 'SkimmerWatch',
+            desc: 'Community-driven, anonymous reporting platform for suspected payment card skimming activity. Empowering users to report and track potential security threats in real-time.',
+            tags: ['React', 'Security', 'Community', 'Reporting'],
+            link: '#',
+            color: 'neon-cyan'
+        },
+        {
             name: 'Obscura CLI Tool',
             desc: 'A terminal utility for quick development setup and config management.',
             tags: ['Rust', 'CLI', 'WebAssembly'],

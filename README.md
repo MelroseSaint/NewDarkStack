@@ -34,6 +34,7 @@ Minimal, ultra‑dark portfolio app with neon accents. Built with React + Vite +
 - **RepoGenV2**: Advanced repository generation tool with enhanced AI capabilities
 - **DealMentorAi**: AI-powered deal analysis and mentorship platform
 - **Skimmerwatcher**: Advanced fraud detection system using machine learning
+- **SkimmerWatch**: Community-driven, anonymous reporting platform for suspected payment card skimming activity
 - **Repo Generator AI**: Automated repository documentation
 - And more from DarkStackStudios
 
