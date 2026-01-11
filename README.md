@@ -9,7 +9,7 @@ Minimal, ultra‑dark portfolio app with neon accents. Built with React + Vite +
 **Features:**
 - ObscuraCode AI development studio branding
 - Enhanced animations and performance optimizations
-- Featured projects: SteadyCoachAI, PlanNest, RepoGenV2, DealMentorAi, Skimmerwatcher, and more
+- Featured projects: SteadyCoachAI, PlanNest, RepoGenV2, DealMentorAi, SkimGuard, and more
 - Responsive design with accessibility improvements
 - Animated particle background and neon effects
 

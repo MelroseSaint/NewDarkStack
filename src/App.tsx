@@ -511,8 +511,8 @@ const Projects = () => {
             color: 'neon-cyan'
         },
         {
-            name: 'Skimmerwatcher',
-            desc: 'Advanced fraud detection system using machine learning to identify skimming devices.',
+            name: 'SkimGuard',
+            desc: 'SkimGuard is a professional-grade, real-time inspection utility designed for field agents to identify ATM and Point-of-Sale (POS) skimmers. It combines computer vision, RF spectral analysis, and physical inspection protocols into a single, offline-capable progressive web application (PWA).',
             tags: ['Rust', 'ML', 'Security', 'WebAssembly'],
             link: '#',
             color: 'neon-magenta'
