@@ -36,6 +36,7 @@ Minimal, ultra‑dark portfolio app with neon accents. Built with React + Vite +
 - **Skimmerwatcher**: Advanced fraud detection system using machine learning
 - **SkimmerWatch**: Community-driven, anonymous reporting platform for suspected payment card skimming activity
 - **Repo Generator AI**: Automated repository documentation
+- **KeySight**: Security-first, browser-based surveillance system designed for zero-trust environments, focusing on local ownership, deterministic behavior (No-AI), and verifiable data integrity using client-side cryptography
 - And more from DarkStackStudios
 
 ## Environment
