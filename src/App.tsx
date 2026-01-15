@@ -544,6 +544,13 @@ const Projects = () => {
             tags: ['Vue.js', 'Firestore'],
             link: '#',
             color: 'neon-magenta'
+        },
+        {
+            name: 'KeySight',
+            desc: 'KeySight is a security-first, browser-based surveillance system designed for zero-trust environments. It focuses on local ownership, deterministic behavior (No-AI), and verifiable data integrity using client-side cryptography.',
+            tags: ['Security', 'Browser-based', 'Zero-trust', 'Cryptography'],
+            link: '#',
+            color: 'neon-cyan'
         }
     ];
 
