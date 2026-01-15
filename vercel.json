@@ -1,5 +1,4 @@
 {
-    "rootDirectory": "NewDarkStack",
     "rewrites": [
         {
             "source": "/(.*)",
@@ -7,8 +6,8 @@
         }
     ],
     "framework": "vite",
-    "buildCommand": "npm run build",
-    "outputDirectory": "dist",
+    "buildCommand": "cd NewDarkStack && npm run build",
+    "outputDirectory": "NewDarkStack/dist",
     "devCommand": "npm run dev",
     "installCommand": "npm install"
 }
